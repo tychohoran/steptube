@@ -1,0 +1,100 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+    overflow: hidden;
+    background-color: black;
+}
+
+#controls-container {
+    position: absolute;
+    top: 0;
+    width: 100%;
+    background: rgba(255, 255, 255, 0.9);
+    z-index: 10;
+    transition: transform 0.3s ease-in-out;
+}
+
+#controls-container.collapsed {
+    transform: translateY(-100%);
+}
+
+#toggle-controls {
+    position: absolute;
+    top: 5px;
+    right: 5px;
+    z-index: 20; /* Ensure the button is above other elements */
+}
+
+.controls {
+    margin: 5px;
+}
+
+.sequencer {
+    display: flex;
+    flex-direction: column;
+    margin: 10px;
+}
+
+.steps {
+    display: flex;
+    flex-direction: column;
+}
+
+.channel {
+    display: flex;
+    align-items: center;
+}
+.channel-input {
+    margin: 5px;
+}
+.step {
+    width: 20px;
+    height: 20px;
+    margin: 5px;
+}
+
+.step:not(:checked):not(:disabled) {
+    appearance: none;
+    background: white;
+    border: solid 1px gray;
+    border-radius: 2px;
+}
+
+.step.current {
+    accent-color: red;
+}
+.step.current:not(:checked):not(:disabled)  {
+    background: pink;
+}
+
+#video-container {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    margin: 0;
+    padding: 0;
+}
+
+#template {
+    display: none;
+}
+
+.player {
+    margin: auto;
+    padding: 0;
+    width: 100%;
+    height: 200%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+}

@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Step Sequencer</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<button id="toggle-controls">Collapse</button>
+<div id="controls-container">
+
+    <button id="play" class="controls">Play</button>
+    <label for="tempo">Tempo: </label>
+    <input type="number" id="tempo" name="tempo" value="120" placeholder="Tempo (BPM)">
+    <div id="steps-container">
+        <!-- Channel controls will be generated her. -->
+    </div>
+</div>
+
+
+<div id='video-container'>
+    <iframe id="template" class="player" width="560" height="315" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+</div>
+
+
+    <script src="https://www.youtube.com/iframe_api"></script>
+    <script src="scripts.js"></script>
+</body>
+</html>
