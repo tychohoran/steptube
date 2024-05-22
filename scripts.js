@@ -18,6 +18,9 @@ document.addEventListener("DOMContentLoaded", () => {
         input.addEventListener('change', onStartTimeChange);
     });
 
+    // Parse URL parameters on page load
+    parseURLParams();
+
     // Initialize players with existing video IDs
     const channels = document.querySelectorAll('.channel');
     channels.forEach(channel => {
@@ -28,11 +31,8 @@ document.addEventListener("DOMContentLoaded", () => {
         }
     });
 
-    // Parse URL parameters on page load
-    parseURLParams();
-
     // Listen for changes in the sequence and update URL parameters
-    document.querySelectorAll('.channel-id, .start-time, #tempo, .step').forEach(input => {
+    document.querySelectorAll('.channel-id, .start-time, .step, #tempo').forEach(input => {
         input.addEventListener('change', updateURLParams);
     });
 });
@@ -204,7 +204,7 @@ function toggleControls() {
 function updateURLParams() {
     const channelData = [];
     document.querySelectorAll('.channel').forEach(channel => {
-        const videoId = channel.getAttribute('data-video-id');
+        const videoId = channel.querySelector('.channel-id').value;
         const startTime = channel.querySelector('.start-time').value;
         const checkedSteps = Array.from(channel.querySelectorAll('.step')).map(step => step.checked ? '1' : '0').join('');
         channelData.push(`${videoId},${startTime},${checkedSteps}`);
@@ -232,7 +232,9 @@ function parseURLParams() {
             const channel = document.querySelector(`.channel[data-player-id="player${channelIndex}"]`);
             if (channel) {
                 channel.setAttribute('data-video-id', videoId);
-                channel.querySelector('.start-time').value = startTime; // Set start time
+                channel.setAttribute('data-start-time', startTime);
+                channel.querySelector('.channel-id').value = videoId; // Set video ID input value
+                channel.querySelector('.start-time').value = startTime; // Set start time input value
                 const steps = channel.querySelectorAll('.step');
                 checkedSteps.split('').forEach((checked, stepIndex) => {
                     steps[stepIndex].checked = (checked === '1');
